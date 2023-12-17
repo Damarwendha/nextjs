@@ -21,6 +21,9 @@ export async function fetchRevenue() {
 }
 ```
 
+### Streaming (Loading Indicator),
+1. There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback>.
+
 ### Fetch Data,
 1. fetching data from the client, you will need an API layer that runs on the server to avoid exposing your database secrets to the client.(u don't need API layer if u on server component)
 
