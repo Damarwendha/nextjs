@@ -45,8 +45,20 @@ export const lusitana = Lusitana({
 });
 ```
 
-## Next.js App Router Course - Starter
+### Random Example
+Search feature in next js
+```
+  const searchParams = useSearchParams();
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+  const { replace } = useRouter();
+  const pathname = usePathname();
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+  function handleSearch(term: string) {
+    const params = new URLSearchParams(searchParams);
+
+    if (term) params.set('query', term);
+    else params.delete('query');
+
+    replace(`${pathname}?${params}`);
+  }
+```
