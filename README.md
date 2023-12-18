@@ -69,7 +69,3 @@ Whether you use one or the other depends on whether you're working on the client
 <br />
 <br />
 <br />
--) When to use server components and client component?
-
-![image](https://github.com/Damarwendha/nextjs/assets/143293717/98fac340-d13d-4753-bf4a-24cd98c45de8)
-
