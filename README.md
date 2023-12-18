@@ -46,7 +46,7 @@ export const lusitana = Lusitana({
 ```
 
 ### Random Example
-Search feature in next js
+-) Search feature in next js
 ```
   const searchParams = useSearchParams();
 
@@ -62,3 +62,7 @@ Search feature in next js
     replace(`${pathname}?${params}`);
   }
 ```
+
+-) When to use the useSearchParams() hook vs. the searchParams prop?
+
+Whether you use one or the other depends on whether you're working on the client or the server. use the useSearchParams() hook to access the params from the client. Server Component  fetches its own data, so you can pass the searchParams prop from the page to the component.
