@@ -21,9 +21,6 @@ export async function fetchRevenue() {
 }
 ```
 
-### Streaming (Loading Indicator),
-1. There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback;>
-
 ### Fetch Data,
 1. fetching data from the client, you will need an API layer that runs on the server to avoid exposing your database secrets to the client.(u don't need API layer if u on server component)
 
@@ -90,6 +87,9 @@ export default async function Page(
    notFound();
   }
 ```
+
+### Streaming (Loading Indicator),
+1. There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback;>
 
 ### When to use the useSearchParams() hook vs. the searchParams prop?
 Whether you use one or the other depends on whether you're working on the client or the server. use the useSearchParams() hook to access the params from the client. Server Component  fetches its own data, so you can pass the searchParams prop from the page to the component.
