@@ -45,7 +45,8 @@ export const lusitana = Lusitana({
 });
 ```
 
-## Random Example
+## Random tut
+
 ### Revalidate page / path (make the data fresh again after doin something):
 ```
 import { revalidatePath } from 'next/cache';
@@ -75,6 +76,18 @@ redirect('/dashboard/invoices');
     else params.delete('query');
 
     replace(`${pathname}?${params}`);
+  }
+```
+
+### How to trigger page not found
+```
+import { notFound } from 'next/navigation';
+
+export default async function Page(
+  // ...
+
+  if (!invoice) {
+   notFound();
   }
 ```
 
