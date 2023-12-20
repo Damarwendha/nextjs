@@ -45,8 +45,23 @@ export const lusitana = Lusitana({
 });
 ```
 
-### Random Example
--) Search feature in next js
+## Random Example
+### Revalidate page / path (make the data fresh again after doin something):
+```
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+function handleSubmit(){
+// ... //
+
+revalidatePath('/dashboard/invoices');
+
+// redirect to the page //
+redirect('/dashboard/invoices');
+}
+```
+
+### Search feature in next js:
 ```
   const searchParams = useSearchParams();
 
@@ -63,9 +78,5 @@ export const lusitana = Lusitana({
   }
 ```
 
--) When to use the useSearchParams() hook vs. the searchParams prop?
-
+### When to use the useSearchParams() hook vs. the searchParams prop?
 Whether you use one or the other depends on whether you're working on the client or the server. use the useSearchParams() hook to access the params from the client. Server Component  fetches its own data, so you can pass the searchParams prop from the page to the component.
-<br />
-<br />
-<br />
