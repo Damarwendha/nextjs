@@ -24,6 +24,31 @@ export async function fetchRevenue() {
 ### Fetch Data,
 1. fetching data from the client, you will need an API layer that runs on the server to avoid exposing your database secrets to the client.(u don't need API layer if u on server component)
 
+### Metadata,
+```
+## app/layout.tsx
+
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Acme Dashboard',
+    default: 'Acme Dashboard',
+  },
+  description: 'The official Next.js Learn Dashboard built with App Router.',
+};
+```
+The %s in the template will be replaced with the specific page title.
+
+Now, in your page.tsx you can add the page title:
+```
+/app/dashboard/invoices/page.tsx
+
+export const metadata: Metadata = {
+  title: 'Invoices', // the head will be Invoices | Acme Dashboard
+};
+```
+
 ### Font,
 1. antialiased (tailwind) classname, benefit font terlihat smooth
 2. pakai font dari nextjs, benefit font ringan saat proses rendering di client. example:
@@ -41,7 +66,6 @@ export const lusitana = Lusitana({
   weight: ['400', '700'],
 });
 ```
-
 ## Random tut
 
 ### Revalidate page / path (make the data fresh again after doin something):
