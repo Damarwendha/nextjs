@@ -96,7 +96,9 @@ Whether you use one or the other depends on whether you're working on the client
 
 ### Handling Errors,
 ```
-/error.tsx
+error.tsx
+
+// This error prop came from throwen new Error() 
 
 export default function Error({
   error,
