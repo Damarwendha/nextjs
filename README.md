@@ -92,8 +92,10 @@ Untuk handle UI nya pakai file khusus bernama not-found.tsx
 ### Streaming (Loading Indicator),
 There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback;>
 
-### When to use the useSearchParams() hook vs. the searchParams prop?
-Whether you use one or the other depends on whether you're working on the client or the server. use the useSearchParams() hook to access the params from the client. Server Component  fetches its own data, so you can pass the searchParams prop from the page to the component.
+### Password hashing,
+It's good practice to hash passwords before storing them in a database. Hashing converts a password into a fixed-length string of characters, which appears random, providing a layer of security even if the user's data is exposed.
+
+In your seed.js file, you used a package called bcrypt to hash the user's password before storing it in the database. You will use it again later in this chapter to compare that the password entered by the user matches the one in the database. However, you will need to create a separate file for the bcrypt package. This is because bcrypt relies on Node.js APIs not available in Next.js Middleware.
 
 ### Handling Errors,
 ```
