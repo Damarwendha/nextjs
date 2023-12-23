@@ -21,11 +21,33 @@ export async function fetchRevenue() {
 }
 ```
 
-### Streaming (Loading Indicator),
-1. There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback;>
-
 ### Fetch Data,
 1. fetching data from the client, you will need an API layer that runs on the server to avoid exposing your database secrets to the client.(u don't need API layer if u on server component)
+
+### Metadata,
+```
+## app/layout.tsx
+
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Acme Dashboard',
+    default: 'Acme Dashboard',
+  },
+  description: 'The official Next.js Learn Dashboard built with App Router.',
+};
+```
+The %s in the template will be replaced with the specific page title.
+
+Now, in your page.tsx you can add the page title:
+```
+/app/dashboard/invoices/page.tsx
+
+export const metadata: Metadata = {
+  title: 'Invoices', // the head will be Invoices | Acme Dashboard
+};
+```
 
 ### Font,
 1. antialiased (tailwind) classname, benefit font terlihat smooth
@@ -44,8 +66,8 @@ export const lusitana = Lusitana({
   weight: ['400', '700'],
 });
 ```
+## Random tut
 
-## Random Example
 ### Revalidate page / path (make the data fresh again after doin something):
 ```
 import { revalidatePath } from 'next/cache';
@@ -78,5 +100,54 @@ redirect('/dashboard/invoices');
   }
 ```
 
-### When to use the useSearchParams() hook vs. the searchParams prop?
-Whether you use one or the other depends on whether you're working on the client or the server. use the useSearchParams() hook to access the params from the client. Server Component  fetches its own data, so you can pass the searchParams prop from the page to the component.
+### How to trigger page not found
+```
+import { notFound } from 'next/navigation';
+
+export default async function Page(
+  // ...
+
+  if (!invoice) {
+   notFound();
+  }
+```
+Untuk handle UI nya pakai file khusus bernama not-found.tsx
+
+### Streaming (Loading Indicator),
+There are two ways you implement streaming in Next.js: At the page level, with the loading.tsx file and For specific components, with <Suspense fallback;>
+
+### Password hashing,
+It's good practice to hash passwords before storing them in a database. Hashing converts a password into a fixed-length string of characters, which appears random, providing a layer of security even if the user's data is exposed.
+
+In your seed.js file, you used a package called bcrypt to hash the user's password before storing it in the database. You will use it again later in this chapter to compare that the password entered by the user matches the one in the database. However, you will need to create a separate file for the bcrypt package. This is because bcrypt relies on Node.js APIs not available in Next.js Middleware.
+
+### Handling Errors,
+```
+## error.tsx
+
+'use client';
+
+// This error prop came from throwen new Error() 
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Optionally log the error to an error reporting service
+    console.error(error);
+  }, [error]);
+ 
+  return (
+      <button
+        onClick={
+          // Attempt to recover by trying to re-render the invoices route
+          () => reset()
+        }
+        Try again
+      </button>
+  );
+}
+```
